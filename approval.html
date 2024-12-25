@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Approval</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            padding-top: 20px;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 300px;
+            height: 300px;
+            border-radius: 80%;
+            display: inline-block;
+        }
+
+        .logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+
+        .status {
+            font-size: 1.5em;
+            color: #410000;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .loading {
+            color: gray;
+            font-size: 1em;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .qr-code img {
+            max-width: 100%;
+            max-height: 100%;
+        }   
+
+        canvas {
+            display: block;
+            margin: 20px auto;
+        }
+
+        .access-granted-message {
+            font-size: 1.2em;
+            color: #008000;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .instructions {
+            font-size: 1em;
+            color: #555;
+            margin-top: 10px;
+            margin-bottom: 20px; /* Add spacing after instructions */
+        }
+
+        .back-button {
+            padding: 5px 15px;
+            font-size: 1em;
+            color: white;
+            background-color: #410000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            width: auto;
+            margin: 10px auto;
+        }
+
+        .back-button:hover {
+            background-color: #660000;
+        }
+
+        #backButton{
+            display: block;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="clavelux logo.png" alt="Logo">
+        </div>
+        <div class="status" id="statusMessage">Waiting for Approval</div>
+        <div class="loading" id="loadingSpinner">
+            <img src="spinner.gif" alt="Loading" width="30">
+            <p>Please Wait...</p>
+        </div>
+        <div class="qr-code" id="qrCodeContainer"></div>
+        <div class="access-granted-message" id="accessMessage" style="display: none;">
+            Access Granted
+        </div>
+        <div class="instructions" id="instructions" style="display: none;">
+            Show this QR Code to the security personnel for scanning.
+        </div>
+        <button class="back-button" id="backButton" onclick="goBack()" style="display: none;">Back</button>
+    </div>
+
+    <!-- QR Code Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script>
+        // setTimeout(() => {
+            // Hide "Waiting for Approval" and spinner
+            document.getElementById('statusMessage').style.display = 'none';
+            document.getElementById('loadingSpinner').style.display = 'block';
+            const backButton = document.getElementById('backButton');
+            backButton.style.display = 'block';
+            // Generate QR Code
+            const qrContainer = document.getElementById('qrCodeContainer');
+            const qr = new QRious({
+                value: 'Approval Granted', // Content of the QR Code
+                size: 200 // Size of the QR Code
+            });
+
+            // const canvas = qr.canvas;
+            // qrContainer.appendChild(canvas);
+            // qrContainer.style.display = 'block';
+
+            // Show "Access Granted" and instructions
+            // document.getElementById('accessMessage').style.display = 'block';
+            // document.getElementById('instructions').style.display = 'block';
+
+            // // Move Back Button below instructions
+            // const instructions = document.getElementById('instructions');
+            // const backButton = document.getElementById('backButton');
+            // instructions.insertAdjacentElement('afterend', backButton);
+
+            // Show the Back button
+            // backButton.style.display = 'block';
+        // }, 2000); // 2 seconds
+
+        // Redirect to homepage
+        function goBack() {
+            window.location.href = 'homepage.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #fdf5e6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 80%;
+            max-width: 900px;
+            height: 90vh;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar {
+            background-color: #410000;
+            color: white;
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .sidebar h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #fffce9;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            width: 100%;
+        }
+
+        .sidebar ul li {
+            width: 100%;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            display: block;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+
+        .sidebar ul li a:hover {
+            background: #ffd900bf;
+            color: #410000;
+        }
+
+        .content {
+            width: 70%;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .notification-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff5f8;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .notification-item:hover {
+            background-color: #f2f2f2;
+        }
+
+        .details-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .modal-header {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .modal-footer {
+            text-align: right;
+        }
+
+        .close-modal-btn, .approve-btn, .deny-btn {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .close-modal-btn {
+            background-color: #410000;
+            color: white;
+        }
+
+        .approve-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .deny-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .back-button button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #410000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button button:hover {
+            background-color: #B22222;
+        }
+
+
+        .reason-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Visitor's Notification</h2>
+            <ul>
+                <li><a href="notification_User.html">Request Notification</a></li>
+                <li><a href="upcoming.html">Reminders for Upcoming Visits</a></li>
+            </ul>
+        </div>
+        <div class="content" id ='content'>
+            <h3 id="text_header">All Notifications</h3>
+            <!-- <div class="notification-item" onclick="showDetails('Allen Rrchie Pila', 'allen.pila@example.com', 'Office Visit', '2024-12-09', '2:15 PM', 'Meeting', 'Discuss project details')">
+                <div class="details">
+                    <div class="details-title">Office Visit</div>
+                    <div class="details-email">allen.pila@example.com</div>
+                </div>
+            </div>
+            <div class="notification-item" onclick="showDetails('Khrizie Maeren De Silos', 'maeren.suarez@example.com', 'Library Visit', '2024-12-15', '3:15 PM', 'Finding references for thesis', 'Finding references for thesis')">
+                <div class="details">
+                    <div class="details-title">Library Visit</div>
+                    <div class="details-email">maeren.suarez@example.com</div>
+                </div>
+            </div>
+            <div class="notification-item" onclick="showDetails('Joemelle Lumbres', 'JC.Lumbres@example.com', 'Office Visit', '2024-11-09', '1:15 PM', 'Meeting', 'Discuss project details')">
+                <div class="details">
+                    <div class="details-title">Office Visit</div>
+                    <div class="details-email">JC.Lumbres@example.com</div>
+                </div>
+            </div> -->
+            <div class="back-button">
+                <button onclick="goBack()">Back</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <div id="details-modal" class="details-modal">
+        <div class="modal-content">
+            <div class="modal-header" id="modal-title"></div>
+            <div class="modal-body">
+                <p><strong>Name:</strong> <span id="modal-name"></span></p>
+                <p><strong>Email:</strong> <span id="modal-email"></span></p>
+                <p><strong>Purpose:</strong> <span id="modal-purpose"></span></p>
+                <p><strong>Schedule:</strong> <span id="modal-date"></span></p>
+                <textarea id="reason-input" class="reason-input" placeholder="Reason for denial (required if denying)..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="approve-btn" onclick="approveRequest()">Approve</button>
+                <button class="deny-btn" onclick="showReasonInput()">Deny</button>
+                <button class="close-modal-btn" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showDetails(name, email, purpose, date, schedule, reason) {
+            document.getElementById('modal-name').textContent = name;
+            document.getElementById('modal-email').textContent = email;
+            document.getElementById('modal-purpose').textContent = purpose;
+            document.getElementById('modal-date').textContent = date;
+            document.getElementById('modal-schedule').textContent = schedule;
+            document.getElementById('modal-reason').textContent = reason;
+            document.getElementById('details-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('details-modal').style.display = 'none';
+        }
+
+        function approveRequest() {
+
+
+            alert("Request approved!");
+            closeModal();
+        }
+
+        function showReasonInput() {
+            const input = document.getElementById('reason-input');
+            input.style.display = 'block';
+            input.focus();
+        }
+
+        function goBack() {
+            window.location.href = 'homepage.html';
+        }
+    </script>
+</body>
+
+<script src="./backend/visitornotif.js"></script>
+</html>

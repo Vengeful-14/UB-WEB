@@ -1,0 +1,62 @@
+[
+    {
+      "firstName": "Juan",
+      "lastName": "Dela Cruz",
+      "email": "juan.delacruz@example.com",
+      "password": "SecurePassword123"
+    },
+    {
+      "firstName": "Maria",
+      "lastName": "Santos",
+      "email": "maria.santos@example.com",
+      "password": "Password1234!"
+    },
+    {
+      "firstName": "Pedro",
+      "lastName": "Rodriguez",
+      "email": "pedro.rodriguez@example.com",
+      "password": "P@ssw0rd456"
+    },
+    {
+      "firstName": "Ana",
+      "lastName": "Garcia",
+      "email": "ana.garcia@example.com",
+      "password": "Ana12345!"
+    },
+    {
+      "firstName": "Jose",
+      "lastName": "Mendoza",
+      "email": "jose.mendoza@example.com",
+      "password": "JosePass987"
+    },
+    {
+      "firstName": "Liza",
+      "lastName": "Tan",
+      "email": "liza.tan@example.com",
+      "password": "LizaT@123"
+    },
+    {
+      "firstName": "Carlos",
+      "lastName": "Lopez",
+      "email": "carlos.lopez@example.com",
+      "password": "CarL0sP@ss"
+    },
+    {
+      "firstName": "Isabel",
+      "lastName": "Zamora",
+      "email": "isabel.zamora@example.com",
+      "password": "Isabel321!"
+    },
+    {
+      "firstName": "Ricardo",
+      "lastName": "Reyes",
+      "email": "ricardo.reyes@example.com",
+      "password": "Ric@rd0P@ss"
+    },
+    {
+      "firstName": "Sofia",
+      "lastName": "Castro",
+      "email": "sofia.castro@example.com",
+      "password": "Sofia2024#"
+    }
+  ]

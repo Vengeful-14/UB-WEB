@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+
+        .back-button {
+        display: none;
+        padding: 5px 15px;
+        font-size: 1em;
+        color: white;
+        background-color: #410000;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        width: auto; /* Adjusts width to fit content */
+        margin: 10px auto; /* Centers the button horizontally */
+        display: block; /* Ensures the button is treated as a block element */
+        }
+
+
+        .back-button:hover {
+            background-color: #660000;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="form-container">
+        <h1>Form</h1>
+        <form id="visitorForm">
+            <section>
+                <h2>Visitor's Info</h2>
+                <input disabled type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                <input disabled type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+            </section>
+            <section>
+                <h2>Point of Contact Info</h2>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                
+                <label for="hostStatus">Point of Contact Status:</label>
+                <select id="hostStatus" name="hostStatus" required>
+                    <option value="">Select...</option>
+                    <option value="2">Student</option>
+                    <option value="3">Faculty/Admin</option>
+                    <option value="4">Office</option>
+                </select>
+                <label for="purposeOfVisit">Purpose of Visit:</label>
+                <input type="text" id="purposeOfVisit" name="purposeOfVisit" placeholder="State your reason for visiting here..."required>
+            </section>
+            <section>
+                <h2>Schedule</h2>
+                <label for="visitDate">Select Date:</label>
+                <input type="date" id="visitDate" name="visitDate" required>
+
+                <label for="visitTime">Select Time:</label>
+                <input type="text" id="visitTime" name="visitTime" placeholder="hh:mm am/pm" required onfocus="(this.type='time')" onblur="if(!this.value) this.type='text';">
+        </section>
+            <button type="submit" onclick="submit_data()">Submit</button>
+        </form>
+        <button class="back-button" id="backButton" onclick="goBack()">Back</button>
+    </div>
+    <script>
+        document.getElementById("visitorForm").addEventListener("submit", function(event) {
+            const firstName = document.getElementById("firstName").value.trim();
+            const lastName = document.getElementById("lastName").value.trim();
+            const email = document.getElementById("email").value.trim();
+            
+            // Validation
+            if (!firstName || !lastName) {
+                alert("Please complete all required fields including First Name and Last Name.");
+                event.preventDefault();
+                return;
+            }
+
+            if (!email.includes("@")) {
+                alert("Please enter a valid email address containing '@'.");
+                event.preventDefault();
+                return;
+            }
+
+            // If validation passes, redirect
+            event.preventDefault(); // Prevent default for testing
+            // window.location.href = "approval.html";
+        });
+
+        document.getElementById('backButton').style.display = 'block';
+        
+        function goBack() {
+            window.location.href = 'homepage.html';
+        }
+    </script>
+</body>
+<script src="./backend/form.js"></script>
+</html>
+

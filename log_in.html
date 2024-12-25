@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clavelux - Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .logo-circle {
+            width: 100%;
+            height: auto;
+            border-radius: 150%;
+            overflow: hidden;
+            margin: 0 auto;
+            max-width: 150px;
+        }
+
+        .logo {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-container input {
+            padding-right: 40px; /* Add space for the toggle icon */
+        }
+
+        .toggle-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .login-button, .signup-button, .google-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #410000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        .login-button:hover, .google-button:hover, .signup-button:hover {
+            background-color: #660000;
+        }
+
+        .separator {
+            margin: 7px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .separator::before,
+        .separator::after {
+            content: "";
+            display: block;
+            height: 1px;
+            background: #ccc;
+            width: 40%;
+            position: absolute;
+            top: 50%;
+        }
+
+        .separator::before {
+            left: 0;
+        }
+
+        .separator::after {
+            right: 0;
+        }
+
+        .separator span {
+            background: white;
+            padding: 0 10px;
+            position: relative;
+            font-size: 0.8em;
+            color: #555;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        .button_container{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            gap: 1em;
+            margin-bottom:2em;
+        }
+        .toggle{
+            background-color: #ffc454;
+            width: 40%;
+            font-size: 12px;
+            color: rgb(78, 78, 78);
+            font-weight: 700;
+        }
+        #toggle1{
+            background-color: #ffc454;
+            width: 40%;
+            font-size: 12px;
+            color: rgb(78, 78, 78);
+            font-weight: 700;
+        }
+        #toggle2{
+            background-color: white;
+            width: 40%;
+            font-size: 12px;
+            color: rgb(78, 78, 78);
+            font-weight: 700;
+        }
+        #login2{
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="button_container">
+            <button type="button"  id="toggle1" onclick="toggle(1)">Visitor</button>
+            <button type="button"  id="toggle2" onclick="toggle(2)">University</button>
+        </div>
+        <div class="logo-circle">
+            <img src="clavelux logo.png" alt="Clavelux Logo" class="logo">
+        </div>
+        <h1>Welcome to Clavelux</h1>
+
+        <!-- Login Form -->
+        <div class="login-form">
+            <input type="email" placeholder="Email" id="email" required>
+            
+            <div class="password-container">
+                <input type="password" placeholder="Password" id="password" required>
+                <i class="fas fa-eye toggle-icon" id="togglePassword"></i>
+            </div>
+        </div>
+
+        <button type="button" id="login1" class="login-button" onclick="login_visitor()">Log In</button>
+        <button type="button" id="login2" class="login-button" onclick="login_contact()">Log In</button>
+        <!-- Sign Up Button -->
+        <button class="signup-button" onclick="goToSignUp()">Sign Up</button>
+
+        <!-- Separator -->
+        <div class="separator">
+            <span>OR</span>
+        </div>
+
+        <!-- Google Button -->
+        <button class="google-button" onclick="goToGoogleLogin()">Continue with Google</button>
+
+        <!-- Error message for empty fields or invalid email -->
+        <div class="error-message" id="error-message" style="display: none;">
+            Please fill out all fields with valid information to log in or sign up.
+        </div>
+    </div>
+
+    <script src="./backend/login_visitor.js"> </script>
+    <script src="./backend/login_contact.js"> </script>
+    <script>
+        function toggle(id){
+            let bttn1 = document.getElementById('toggle1');
+            let bttn2 = document.getElementById('toggle2');
+            let login1 = document.getElementById('login1');
+            let login2 = document.getElementById('login2')
+
+            if(id == 1){
+                bttn1.style.backgroundColor='#ffc454';
+                bttn2.style.backgroundColor='white';
+                login1.style.display='block'
+                login2.style.display='none'
+                console.log(1)
+            }else{
+                bttn1.style.backgroundColor='white';
+                bttn2.style.backgroundColor='#ffc454';
+                login1.style.display='none'
+                login2.style.display='block'
+                console.log(2)
+            }
+
+        }
+        function goToSignUp() {
+            window.location.href = "signup.html";  // Redirect to sign-up page
+        }
+
+        function goToGoogleLogin() {
+            window.location.href = "https://accounts.google.com/o/oauth2/v2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=token&scope=email";
+        }
+
+ 
+
+        // Password toggle functionality
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        togglePassword.addEventListener("click", () => {
+            // Toggle the type attribute
+            const isPassword = passwordInput.type === "password";
+            passwordInput.type = isPassword ? "text" : "password";
+
+            // Toggle the icon
+            togglePassword.classList.toggle("fa-eye", !isPassword);
+            togglePassword.classList.toggle("fa-eye-slash", isPassword);
+        });
+    </script>
+</body>
+</html>

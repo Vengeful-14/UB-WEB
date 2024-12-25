@@ -1,0 +1,78 @@
+/* Set the video background */
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Keeps the video in the background */
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Makes sure the video covers the full screen */
+}
+
+/* Header styling */
+.header {
+  background-color: maroon; /* Maroon background */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1; /* Ensure header stays on top of the video */
+}
+
+.logo img {
+  height: 50px; /* Adjust size of logo */
+}
+
+.header-icons {
+  display: flex;
+  gap: 15px; /* Space between icons */
+}
+
+.header-icons .icon i {
+  font-size: 20px; /* Adjust size of icons */
+  color: white; /* Default color */
+  transition: color 0.3s, transform 0.3s; /* Smooth color and zoom transition */
+}
+
+/* Icon color change on hover */
+.header-icons .icon:hover i {
+  color: #ffcc00; /* Change color on hover (yellow) */
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+/* Icon color change when clicked (active state) */
+.header-icons .icon:active i {
+  color: #ff0000; /* Change color on click (red) */
+  transform: scale(1.05); /* Slightly shrink the icon when clicked */
+}
+
+/* Focus effect (for accessibility, in case someone clicks the icon using keyboard) */
+.header-icons .icon:focus i {
+  outline: none; /* Remove default focus outline */
+  color: #ff0000; /* Same red color when focused */
+}
+
+/* Content section styling */
+.content {
+  text-align: center;
+  color: white;
+  padding-top: 120px; /* Adjust for header height */
+}
+
+h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.5em;
+}

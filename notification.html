@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <title>Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background-color: #800000;
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .navbar a.active {
+            font-weight: bold;
+        }
+
+        .notification-container {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .notification-header {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .notification-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff5f8;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+        }
+
+        .notification-details {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .notification-email {
+            font-size: 1em;
+            font-weight: bold;
+            margin: 0 0 5px 0;
+        }
+
+        .notification-info {
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .button {
+            font-size: 0.9em;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            width: 100px;
+            text-align: center;
+        }
+
+        /* .approved {
+            background-color: #28a745;
+        } */
+
+        .approved {
+            background-color: #008f7a; /* Accepted */
+        }
+
+        .pending {
+            background-color: #005aad; /* Pending */
+        }
+
+        .rejected {
+            background-color: red; /* Rejected */
+        }
+        .approved:hover {
+            background-color: #218838;
+        }
+
+        .qr-code-container {
+            display: none;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .qr-code {
+            margin-top: 10px;
+            width: 150px;
+            height: 150px;
+        }
+
+        .back-button {
+        display: none;
+        padding: 5px 15px;
+        font-size: 1em;
+        color: white;
+        background-color: #800000;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        width: auto; /* Adjusts width to fit content */
+        margin: 10px auto; /* Centers the button horizontally */
+        display: block; /* Ensures the button is treated as a block element */
+        }
+
+        .back-button:hover {
+            background-color: #660000;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+
+    <div class="notification-container" id="notification-container">
+        <div class="notification-header">Notification</div>
+
+        <!-- Example for a schedule -->
+
+
+        <!-- Example of another schedule -->
+        <!-- <div class="notification-item" id="notification-alice">
+            <div class="notification-details">
+                <div class="notification-email">alice.johnson@example.com</div>
+                <div class="notification-info">Attending seminar<br>2024-12-10 // 9:00 AM</div>
+            </div>
+            <div class="button-container">
+                <button id="approve-alice" class="button approved" onclick="approveSchedule('alice', 'Approved: Attending seminar on 2024-12-10 9:00 AM')">Approve</button>
+            </div>
+            <div id="qr-code-alice" class="qr-code-container">
+                <canvas id="qr-alice" class="qr-code"></canvas>
+            </div>
+        </div> -->
+        <button class="back-button" id="backButton" onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        // Function to approve schedule and show the QR code
+        function approveSchedule(userId, text) {
+            const qrCodeContainer = document.getElementById(`qr-code-${userId}`);
+            const qrElement = document.getElementById(`qr-${userId}`);
+            const approveButton = document.getElementById(`approve-${userId}`);
+
+            // Show the QR code container
+            qrCodeContainer.style.display = 'block';
+
+            // Generate QR code
+            QRCode.toCanvas(qrElement, text, function(error) {
+                if (error) {
+                    console.error(error);
+                } else {
+                    console.log('QR Code generated!');
+                }
+            });
+
+            // If validation passes, redirect
+            event.preventDefault(); // Prevent default for testing
+            window.location.href = "approved.html";
+
+            document.getElementById('backButton').style.display = 'block';
+        }
+
+        function goBack() {
+            window.location.href = 'homepage.html';
+        }
+    </script>
+
+</body>
+
+<script src="./backend/notification.js"></script>
+</html>

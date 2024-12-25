@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage</title>
+  <link rel="stylesheet" href="styles copy.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+
+    .overlay {
+      height: 65%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.9);
+      overflow-x: hidden;
+      transition: 0.5s;
+      border-radius: 10px;
+    }
+
+    .overlay-content {
+      position: relative;
+      top: 30px;
+      width: 100%;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .overlay a {
+      padding: 10px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .overlay a:hover,
+    .overlay a:focus {
+      color: #f1f1f1;
+    }
+
+    .overlay .closebtn {
+      position: relative;
+      top: 70px;
+      left: 150px;
+      font-size: 30px;
+      color: #818181;
+    }
+
+    .overlay .closebtn:hover {
+      color: white;
+    }
+
+    .menu-icon {
+      position: absolute;
+      top: 15px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+      right: 10px;
+    }
+
+    .menu-icon:hover {
+      color: #f1f1f1;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-y: auto;
+      font-family: Arial, sans-serif;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background-color: #410000;
+    }
+
+    .content {
+      text-align: center;
+      color: #410000;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    .icon-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px auto;
+      width: 70%;
+      max-width: 1000px;
+      padding: 40px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+    }
+
+    .icon {
+      text-align: center;
+      font-size: 50px;
+      color: #410000;
+      transition: transform 0.3s;
+      width: 150px;
+      height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid #410000;
+      border-radius: 15px;
+    }
+
+    .icon span {
+      font-size: 16px;
+      color: black;
+    }
+
+    .icon:hover {
+      transform: scale(1.1);
+    }
+
+    .footer {
+      background-color: #410000;
+      color: white;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
+
+    .footer .logo {
+      height: 50px;
+    }
+
+    .footer .column {
+      flex: 1;
+      margin: 10px;
+      min-width: 250px;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .footer h3 {
+      margin-bottom: 15px;
+    }
+
+    .footer p {
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .social-icons a {
+      font-size: 24px;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid white;
+      border-radius: 50%;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .social-icons a:hover {
+      background-color: #d4af37;
+      color: #410000;
+    }
+  </style>
+</head>
+<body>
+  <div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="overlay-content">
+      <a href="personal_details.html">Profile</a>
+      <a href="language_region.html">Language and Region</a>
+      <a href="terms_policy.html">Terms of Service and Privacy Policy</a>
+      <a href="index.html">Logout</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <span class="menu-icon" onclick="openNav()">&#9776;</span>
+    <div class="logo">
+      <img src="homepage_background/white-out-UB-Master-Logo.webp" alt="Logo">
+    </div>
+  </header>
+
+  <!-- Content -->
+  <section class="content">
+    <h1>Welcome to our Website!</h1>
+    <div class="clave">
+      <img src="homepage_background/logo.jpeg" alt="clave" style="width: 300px; height: 250px;">
+    </div>
+
+    <!-- Icon grid -->
+    <div class="icon-grid">
+      <a href="form.html" class="icon" id="form">
+        <i class="fas fa-file-alt"></i>
+        <span>Schedule Form</span>
+      </a>
+      <a href="notification.html" class="icon" id="notification" >
+        <i class="fas fa-bell"></i>
+        <span>Notification</span>
+      </a>
+      <a href="index.html" class="icon">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="schedule.html" class="icon" id="schedule">
+        <i class="fas fa-history"></i>
+        <span>Schedule History</span>
+      </a>
+      <a href="about.html" class="icon">
+        <i class="fas fa-info-circle"></i>
+        <span>About</span>
+      </a>
+      <a href="profileSettings.html" class="icon" id ="profileSettings">
+        <i class="fas fa-user-cog"></i>
+        <span>Profile Menu</span>
+      </a>
+      <a href="notification_User.html" class="icon" id="visitnotif">
+        <i class="far fa-bell"></i>
+        <span>Visit Notification</span>
+      </a>
+      <a href="requestHistory.html" class="icon" id="requestHistory">
+        <i class="fa fa-list"></i>
+        <span>Request List</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="column">
+      <div class="logo">
+        <img src="homepage_background/white-out-UB-Master-Logo.webp" alt="Logo">
+      </div>
+      <h5>Hilltop Road, Brgy. Kumintang Ibaba, Batangas City 4200, Philippines</h5>
+    </div>
+
+    <div class="column">
+      <h3>Contact:</h3>
+      <p>+63 999 888 7777</p>
+      <p>+63 922 333 4444</p>
+    </div>
+
+    <div class="column">
+      <h3>Office Hours:</h3>
+      <p>Monday to Friday: 8:00 am – 5:00 pm</p>
+      <p>Saturday: 8:00 am – 12:00 pm</p>
+    </div>
+
+    <div class="column">
+      <h3>Social Media:</h3>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+      const position_id = localStorage.getItem('position_id');
+      const visitnotif = document.getElementById('visitnotif');
+      const requestHistory =  document.getElementById('requestHistory');
+
+      const form = document.getElementById('form');
+      const notification = document.getElementById('notification')
+      const schedule = document.getElementById('schedule')
+
+      if(position_id == 5){
+          visitnotif.style.display ='none'
+          requestHistory.style.display ='none'
+      
+      }else{
+          visitnotif.style.display ='block'
+          requestHistory.style.display ='block'
+          form.style.display = 'none'
+          notification.style.display = 'none'
+          schedule.style.display ='none'
+         
+        
+      }
+      console.log("position_id: ",position_id);
+
+      
+      // Your initialization code here
+    });
+    function openNav() {
+      document.getElementById("myNav").style.width = "15%";
+    }
+
+    function closeNav() {
+      document.getElementById("myNav").style.width = "0%";
+    }
+  </script>
+</body>
+</html>

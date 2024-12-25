@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visit Request History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: white;
+            border-radius: 10px;
+            color: #410000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .filters {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .filters select, .filters input, .filters button {
+            padding: 8px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .filters select {
+            margin-right: 10px;
+        }
+
+        .filters input {
+            width: 300px;
+        }
+
+        .filters button {
+            background-color: #410000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .filters button:hover {
+            background-color: #800000;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #410000;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .status-approved {
+            color: green;
+        }
+
+        .status-denied {
+            color: red;
+        }
+
+        .status-reason {
+            font-style: italic;
+            color: #555;
+        }
+        button {
+            background-color: #410000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #800000;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>Visit Request History</h1>
+
+    <div class="filters">
+        <select id="filterCriteria">
+            <option value="name">Name</option>
+            <option value="date">Date</option>
+            <option value="purpose">Purpose</option>
+            <option value="status">Status</option>
+        </select>
+
+        <input type="text" id="searchBar" placeholder="Search..." oninput="filterRequests()">
+
+        <button onclick="clearSearch()">Clear Search</button>
+    </div>
+
+    <table id="visitRequestTable">
+        <thead>
+            <tr>
+                <th>Visitor's Name</th>
+                <th>Email</th>
+                <th>Purpose of Visit</th>
+                <th>Scheduled Date & Time</th>
+                <!-- <th>Request Submission Date</th> -->
+                <th>Status</th>
+                <!-- <th>Reason (if Denied)</th> -->
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+    </table>
+
+    <button class="back-button" id="backButton" onclick="goBack()">Back</button>
+</div>
+
+<script>
+    function filterRequests() {
+        const searchTerm = document.getElementById('searchBar').value.toLowerCase();
+        const selectedFilter = document.getElementById('filterCriteria').value;
+        const table = document.getElementById('visitRequestTable');
+        const rows = table.getElementsByTagName('tr');
+        
+        // Loop through each row of the table (skip the header)
+        for (let i = 1; i < rows.length; i++) {
+            let row = rows[i];
+            let name = row.cells[0].textContent.toLowerCase();
+            let email = row.cells[1].textContent.toLowerCase();
+            let purpose = row.cells[2].textContent.toLowerCase();
+            let dateTime = row.cells[3].textContent.toLowerCase();
+            let submissionDate = row.cells[4].textContent.toLowerCase();
+            let status = row.cells[5].textContent.toLowerCase();
+            let reason = row.cells[6].textContent.toLowerCase();
+
+            let match = false;
+
+            // Check the selected filter criteria
+            if (selectedFilter === 'name' && name.includes(searchTerm)) {
+                match = true;
+            } else if (selectedFilter === 'date') {
+                // Search for month name or full date
+                const rowDate = new Date(row.cells[3].textContent);
+                const rowMonth = rowDate.toLocaleString('default', { month: 'long' }).toLowerCase();
+                if (rowMonth.includes(searchTerm) || rowDate.toLocaleDateString().includes(searchTerm)) {
+                    match = true;
+                }
+            } else if (selectedFilter === 'purpose' && purpose.includes(searchTerm)) {
+                match = true;
+            } else if (selectedFilter === 'status' && status.includes(searchTerm)) {
+                match = true;
+            }
+
+            // Show or hide the row based on the match
+            if (match) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+
+            // Show or hide the row based on the match
+            if (match) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        }
+    }
+
+    function clearSearch() {
+        document.getElementById('searchBar').value = '';
+        filterRequests();
+    }
+
+    function goBack() {
+            window.location.href = 'homepage.html';
+        }
+</script>
+
+</body>
+
+<script src="./backend/requestHistory.js"></script>
+</html>

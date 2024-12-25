@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Schedule</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .schedule-container {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .schedule-header {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff5f8;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .schedule-item:hover {
+            background-color: #f2f2f2;
+        }
+
+        .schedule-details {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .schedule-title {
+            font-size: 1em;
+            font-weight: bold;
+            margin: 0 0 5px 0;
+        }
+
+        .schedule-email {
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .schedule-datetime {
+            text-align: center;
+        }
+
+        .schedule-date {
+            font-size: 0.9em;
+            background-color: #9c2332;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        .schedule-time {
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        .schedule-details-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .schedule-modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .schedule-modal-header {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .schedule-modal-footer {
+            text-align: right;
+        }
+
+        .close-modal-btn {
+            background-color: #9c2332;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button {
+        display: none;
+        padding: 5px 15px;
+        font-size: 1em;
+        color: white;
+        background-color: #410000;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        width: auto; /* Adjusts width to fit content */
+        margin: 10px auto; /* Centers the button horizontally */
+        display: block; /* Ensures the button is treated as a block element */
+        }
+
+
+        .back-button:hover {
+            background-color: #660000;
+        }
+
+        .buttons button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-right: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons button.deny {
+            background-color: #f44336;
+        }
+
+        .buttons button:hover {
+            opacity: 0.9;
+        }
+
+        .denial-reason {
+            display: none; /* Initially hidden */
+            margin-top: 10px;
+        }
+
+        .denial-reason textarea {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="schedule-container">
+        <div class="schedule-header">Pending Request</div>
+
+        <!-- Schedule Items -->
+        <div class="schedule-item" onclick="showScheduleDetails('Pending Request...', 'allen.pila@example.com', 'Allen Rrchie Pila', 'Student', '2024-12-09', '2:15 PM', '2024-12-05 11:00 AM', 'Attending Conference')">
+            <div class="schedule-details">
+                <div class="schedule-title">Attending Conference</div>
+                <div class="schedule-email">allen.pila@example.com</div>
+            </div>
+            <div class="schedule-datetime">
+                <div class="schedule-date">2024-12-09</div>
+                <div class="schedule-time">2:15 PM</div>
+            </div>
+        </div>
+
+        <div class="schedule-item" onclick="showScheduleDetails('Pending Request...', 'maeren.suarez@example.com', 'Khrizie Maeren De Silos', 'Student', '2024-11-28', '9:00 AM', '2024-12-05 12:00 PM', 'Attending Conference')">
+            <div class="schedule-details">
+                <div class="schedule-title">Attending Conference</div>
+                <div class="schedule-email">maeren.suarez@example.com</div>
+            </div>
+            <div class="schedule-datetime">
+                <div class="schedule-date">2024-12-10</div>
+                <div class="schedule-time">9:00 AM</div>
+            </div>
+        </div>
+
+        <div class="schedule-item" onclick="showScheduleDetails('Pending Request...', 'JC.lumbres@example.com', 'Joemelle Lumbres', 'Faculty', '2024-12-05', '8:00 AM', '2024-12-07 1:00 PM', 'Attending Seminar')">
+            <div class="schedule-details">
+                <div class="schedule-title">Attending Seminar</div>
+                <div class="schedule-email">JC.lumbres@example.com</div>
+            </div>
+            <div class="schedule-datetime">
+                <div class="schedule-date">2024-12-05</div>
+                <div class="schedule-time">8:00 AM</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal for showing schedule details -->
+    <div id="schedule-modal" class="schedule-details-modal">
+        <div class="schedule-modal-content">
+            <div class="schedule-modal-header" id="modal-title"></div>
+            <div class="schedule-modal-body">
+                <p><strong>Email:</strong> <span id="modal-email"></span></p>
+                <p><strong>Name:</strong> <span id="modal-name"></span></p>
+                <p><strong>Point of Contact/Visit:</strong> <span id="modal-role"></span></p>
+                <p><strong>Date of Submission:</strong> <span id="modal-submission-date"></span></p>
+                <p><strong>Scheduled Date:</strong> <span id="modal-scheduled-date"></span></p>
+                <p><strong>Scheduled Time:</strong> <span id="modal-scheduled-time"></span></p>
+                <p><strong>Purpose:</strong> <span id="modal-scheduled-purpose"></span></p>
+                </div>
+
+             <div class="buttons">
+            <button onclick="approveRequest()">Approve</button>
+            <button class="deny" onclick="showDenialInput(this)">Deny</button>
+        </div>
+        <div class="denial-reason">
+            <textarea placeholder="Reason for denial"></textarea>
+            <button onclick="submitDenial()">Submit Denial</button>
+        </div>
+
+        </div>
+    </div>
+
+    <script>
+        
+        function showScheduleDetails(title, email, name, role, scheduledDate, scheduledTime, submissionDate, Purpose) {
+            
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-email').textContent = email;
+            document.getElementById('modal-name').textContent = name;
+            document.getElementById('modal-role').textContent = role;
+            document.getElementById('modal-submission-date').textContent = submissionDate;
+            document.getElementById('modal-scheduled-date').textContent = scheduledDate;
+            document.getElementById('modal-scheduled-time').textContent = scheduledTime;
+            document.getElementById('modal-scheduled-purpose').textContent = Purpose;
+
+            
+            document.getElementById('schedule-modal').style.display = 'flex';
+            document.getElementById('backButton').style.display = 'block';
+        }
+
+        
+        function closeModal() {
+            document.getElementById('schedule-modal').style.display = 'none';
+        }
+
+        function goBack() {
+            window.location.href = 'homepage.html';
+        }
+
+        function showDetails(id) {
+            const details = document.getElementById(id);
+            if (details.style.display === "none" || details.style.display === "") {
+                details.style.display = "block";
+            } else {
+                details.style.display = "none";
+            }
+        }
+
+        function approveRequest() {
+            document.getElementById('schedule-modal').style.display = 'none';
+            alert("Request approved!");
+        }
+
+        function showDenialInput(button) {
+            // Find the nearest denial-reason div and show it
+            const denialReasonDiv = button.parentElement.nextElementSibling;
+            denialReasonDiv.style.display = "block";
+        }
+
+        function submitDenial() {
+            document.getElementById('schedule-modal').style.display = 'none';
+            alert("Denial reason submitted!");
+        }
+    </script>
+</body>
+</html>

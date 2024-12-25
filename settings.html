@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #fdf5e6; /* Light cream background */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            width: 60%;
+            max-width: 900px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar {
+            background-color: #410000; /* Maroon */
+            color: white;
+            padding: 20px;
+            width: 30%;
+            float: left;
+        }
+
+        .sidebar h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ffffff; /* Gold */
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            display: block;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            background: #ffd700;
+            color: #410000;
+        }
+
+        .content {
+            padding: 20px;
+            width: 70%;
+            float: right;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h3 {
+            font-size: 1.5rem;
+            color: #410000;
+            border-bottom: 2px solid #ffd700;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+
+        .form-group input:focus {
+            border-color: #410000;
+            outline: none;
+        }
+
+        .profile-picture {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-picture img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffd700;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background: #410000;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #ffd700;
+            color: #410000;
+        }
+
+        .footer {
+            clear: both;
+            text-align: center;
+            padding: 10px;
+            background: #410000;
+            color: white;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Settings</h2>
+            <ul>
+                <li><a href="profileSettings.html">Profile</a></li>
+                <li><a href="terms_and_policy.html">Terms and Policy</a></li>
+                <li><a href="changePass.html">Password</a></li>
+                <li><a href="language_user.html">Language and Region</a></li>
+                <li><a href="about_user.html">About</a></li>
+                <li><a href="index.html">Log Out</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h3>Basic Info</h3>
+                <div class="profile-picture">
+                    <img src="https://via.placeholder.com/100" alt="Profile Picture">
+                </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" value="Marem Galvez">
+                </div>
+                <div class="form-group">
+                    <label for="birthday">Birthday</label>
+                    <input type="date" id="birthday" value="2002-11-28">
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <input type="text" id="status" value="Student">
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Contact Info</h3>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="mariaemsrie@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" id="phone" placeholder="Add a recovery phone">
+                </div>
+            </div>
+
+            <button class="btn">Save Changes</button>
+        </div>
+        <div class="footer">© 2024 Your App Name</div>
+    </div>
+</body>
+</html>

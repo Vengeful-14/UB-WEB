@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language and Region Settings</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .settings-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f8f8f8;
+        }
+
+        button {
+            background-color: #410000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #800000;
+        }
+
+        .status-message {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="settings-container">
+        <h1>Language & Region Settings</h1>
+
+        <div class="form-group">
+            <label for="language">Preferred Language</label>
+            <select id="language">
+                <option value="en-us">English (US)</option>
+                <option value="en-uk">English (UK)</option>
+                <option value="fil">Filipino</option>
+                <option value="es">Spanish</option>
+                <option value="de">German</option>
+                <option value="ko">Korean</option>
+                <option value="zh">Chinese</option>
+                <option value="ja">Japanese</option>
+                <option value="pt">Portuguese</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="region">Region</label>
+            <select id="region">
+                <option value="americas">Americas</option>
+                <option value="europe">Europe</option>
+                <option value="asia">Asia</option>
+                <option value="africa">Africa</option>
+                <option value="oceania">Oceania</option>
+            </select>
+        </div>
+
+        <button onclick="saveSettings()">Save Settings</button>
+
+        <div id="status-message" class="status-message"></div>
+
+        <button class="back-button" id="backButton" onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        // Function to save the selected language and region
+        function saveSettings() {
+            const language = document.getElementById("language").value;
+            const region = document.getElementById("region").value;
+            const statusMessage = document.getElementById("status-message");
+
+            // Display a success message with selected values
+            statusMessage.style.color = "green";
+            statusMessage.textContent = `Settings saved! Language: ${getLanguageName(language)}, Region: ${region}`;
+        }
+
+        // Helper function to convert language code to full name
+        function getLanguageName(code) {
+            const languages = {
+                "en-us": "English (US)",
+                "en-uk": "English (UK)",
+                "fil": "Filipino",
+                "es": "Spanish",
+                "de": "German",
+                "ko": "Korean",
+                "zh": "Chinese",
+                "ja": "Japanese",
+                "pt": "Portuguese"
+            };
+            return languages[code] || "Unknown";
+        }
+
+        function goBack() {
+            window.location.href = 'profileSettings.html';
+        }
+    </script>
+</body>
+</html>
